@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-node-port
+spec:
+  type: NodePort
+  # ports that has to be opened or mapped on the target objects
+  ports:
+    # for another pod/container inside of our app to get access to this multi-client Pod
+    - port: 3050
+    # identical with spec-containers-ports in node definition
+      targetPort: 3000
+    # port in the browser as the url to access it to dev (between 30000-32767)
+      nodePort: 31515
+  selector:
+    component: web

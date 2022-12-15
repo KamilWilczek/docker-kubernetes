@@ -1,0 +1,9 @@
+version: '3' # version of dockerfile
+services: # containers, types of containers
+  redis-server: # name of the container
+    image: 'redis'
+  node-app: # name of the container
+    restart: 'no' # restart policy
+    build: . # look into current dir for Dockerfile
+    ports: # setting ports, dash(-) means array
+      - "4001:8081" # port locally, port in containers

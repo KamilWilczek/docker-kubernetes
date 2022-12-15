@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web:
+    build:
+      context: . # folder where is docker-compose file
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes: 
+      - /app/node_modules # do not map this one
+      - ./:/app # current folder outside container : to folder inside container
+  tests:
+    build:
+      context: . # folder where is docker-compose file
+      dockerfile: Dockerfile.dev
+    volumes: 
+      - /app/node_modules # do not map this one
+      - ./:/app # current folder outside container : to folder inside container
+    command: ["npm", "run", "test"]
